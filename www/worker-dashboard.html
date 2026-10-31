@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swasthya Sense | Worker Dashboard</title>
+    <link rel="stylesheet" href="worker-dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="logo"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div>
+                <h2>SWASTHYA<br>SENSE</h2>
+                <small>Healthcare Management</small>
+            </div>
+        </div>
+
+        <div class="profile">
+            <div class="avatar"><i class="fa-solid fa-user-nurse"></i></div>
+            <div>
+                <h4 id="workerName">Healthcare Worker</h4>
+                <small>Frontline Healthcare Staff</small>
+            </div>
+        </div>
+
+        <p class="menu-label">MAIN MENU</p>
+
+        <nav>
+            <a href="#overview" class="nav-link active"><i class="fa-solid fa-house"></i> Dashboard</a>
+            <a href="#patients" class="nav-link"><i class="fa-solid fa-users"></i> My Patients</a>
+            <a href="#followups" class="nav-link"><i class="fa-solid fa-calendar-check"></i> Follow-ups</a>
+            <a href="#alerts" class="nav-link"><i class="fa-solid fa-bell"></i> Attention Alerts</a>
+            <a href="#checkins" class="nav-link"><i class="fa-solid fa-clipboard-check"></i> Check-ins</a>
+            <a href="#reminders" class="nav-link"><i class="fa-solid fa-message"></i> Reminders</a>
+        </nav>
+
+        <p class="menu-label">ACCOUNT</p>
+        <nav>
+            <a href="#profile" class="nav-link"><i class="fa-solid fa-user"></i> My Profile</a>
+            <a href="#settings" class="nav-link"><i class="fa-solid fa-gear"></i> Settings</a>
+        </nav>
+
+        <button class="logout" id="logoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <h2>Healthcare Worker Dashboard</h2>
+                <p>Welcome back! Here's your patient care overview.</p>
+            </div>
+            <div class="top-actions">
+                <button class="notification" id="notificationBtn">
+                    <i class="fa-regular fa-bell"></i>
+                    <span></span>
+                </button>
+                <div class="top-user">
+                    <div class="mini-avatar"><i class="fa-solid fa-user-nurse"></i></div>
+                    <strong id="topWorkerName">Healthcare Worker</strong>
+                </div>
+            </div>
+        </header>
+
+        <section id="overview">
+            <div class="welcome-banner">
+                <div>
+                    <span>YOUR CARE. THEIR WELL-BEING.</span>
+                    <h1>Every Patient Matters.</h1>
+                    <p>Stay informed, manage follow-ups and ensure no patient is left behind.</p>
+                </div>
+                <i class="fa-solid fa-heart-pulse banner-icon"></i>
+            </div>
+
+            <div class="section-heading">
+                <div>
+                    <h2>Dashboard Overview</h2>
+                    <p>Today's patient care statistics</p>
+                </div>
+                <span id="todayDate"></span>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue"><i class="fa-solid fa-users"></i></div>
+                    <p>Total Assigned Patients</p>
+                    <h2 id="totalPatients">0</h2>
+                    <small>Patients under your care</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green"><i class="fa-solid fa-calendar-check"></i></div>
+                    <p>Upcoming Follow-ups</p>
+                    <h2 id="upcomingCount">0</h2>
+                    <small>Scheduled appointments</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange"><i class="fa-solid fa-clock"></i></div>
+                    <p>Overdue Follow-ups</p>
+                    <h2 id="overdueCount">0</h2>
+                    <small>Require administrative action</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon purple"><i class="fa-solid fa-stethoscope"></i></div>
+                    <p>Clinical Reviews</p>
+                    <h2 id="clinicalCount">0</h2>
+                    <small>Awaiting clinician review</small>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-grid">
+
+            <div class="panel" id="alerts">
+                <div class="panel-heading">
+                    <div>
+                        <h3><i class="fa-solid fa-shield-heart"></i> Patient Attention Engine</h3>
+                        <p>Cases requiring your attention</p>
+                    </div>
+                    <span class="live-tag">DEMO</span>
+                </div>
+
+                <div id="alertList"></div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Quick Actions</h3>
+                        <p>Manage your daily activities</p>
+                    </div>
+                </div>
+
+                <button class="action-btn" id="addPatientBtn">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span><strong>Register Patient</strong><small>Add a new patient record</small></span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <button class="action-btn" id="checkinBtn">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                    <span><strong>Record Check-in</strong><small>Enter patient health updates</small></span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <button class="action-btn" id="scheduleBtn">
+                    <i class="fa-solid fa-calendar-plus"></i>
+                    <span><strong>Schedule Follow-up</strong><small>Create a follow-up schedule</small></span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <button class="action-btn" id="reminderBtn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span><strong>Send Reminder</strong><small>Generate a demo reminder</small></span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <section class="panel table-panel" id="patients">
+            <div class="panel-heading">
+                <div>
+                    <h3>My Patients</h3>
+                    <p>View and manage assigned patient records</p>
+                </div>
+                <button class="primary-btn" id="exportBtn"><i class="fa-solid fa-download"></i> Export CSV</button>
+            </div>
+
+            <div class="filters">
+                <input type="search" id="patientSearch" placeholder="Search patient name or ID...">
+                <select id="statusFilter">
+                    <option value="all">All Status</option>
+                    <option value="Upcoming">Upcoming</option>
+                    <option value="Overdue">Overdue</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Patient ID</th>
+                            <th>Last Check-in</th>
+                            <th>Next Follow-up</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patientTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="content-grid bottom-grid">
+
+            <div class="panel" id="followups">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Upcoming Follow-ups</h3>
+                        <p>Your next scheduled patient visits</p>
+                    </div>
+                </div>
+                <div id="followupList"></div>
+            </div>
+
+            <div class="panel" id="checkins">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Recent Activity</h3>
+                        <p>Latest updates in patient care</p>
+                    </div>
+                </div>
+                <div id="activityList"></div>
+            </div>
+
+        </section>
+
+        <section class="panel" id="reminders">
+            <div class="panel-heading">
+                <div>
+                    <h3>Reminder Centre</h3>
+                    <p>Consent-based simulated communication</p>
+                </div>
+            </div>
+            <p class="reminder-note">
+                <i class="fa-solid fa-circle-info"></i>
+                Messages in this prototype are simulated and are not sent to real patients.
+            </p>
+            <div id="reminderHistory">No reminders generated yet.</div>
+        </section>
+
+        <footer>
+            <h4>SWASTHYA SENSE</h4>
+            <p>No Patient Lost in the Follow-up Process.</p>
+            <small>Healthcare Worker Portal • Demonstration Version</small>
+        </footer>
+
+    </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-box">
+        <button class="close-modal" id="closeModal">&times;</button>
+        <h2 id="modalTitle">Action</h2>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<script src="worker-dashboard.js"></script>
+</body>
+</html>
