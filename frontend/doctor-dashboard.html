@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SWASTHYA SENSE | Doctor Dashboard</title>
+  <link rel="stylesheet" href="doctor-dashboard.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">✚</div>
+      <div>
+        <strong>SWASTHYA SENSE</strong>
+        <small>Care coordination</small>
+      </div>
+    </div>
+
+    <div class="doctor-mini">
+      <div class="avatar" id="sidebarInitials">DR</div>
+      <div>
+        <b id="sidebarDoctorName">Doctor</b>
+        <small>Clinical workspace</small>
+      </div>
+    </div>
+
+    <nav id="mainNav">
+      <button class="nav-link active" data-target="dashboard">▦ <span>Dashboard</span></button>
+      <button class="nav-link" data-target="patients">♙ <span>Patients</span></button>
+      <button class="nav-link" data-target="checkins">☑ <span>Patient check-ins</span></button>
+      <button class="nav-link" data-target="attention">⚑ <span>Attention engine</span><i id="navAlertCount">0</i></button>
+      <button class="nav-link" data-target="followups">◷ <span>Follow-ups</span></button>
+      <button class="nav-link" data-target="referrals">⇢ <span>Referrals</span></button>
+      <button class="nav-link" data-target="reminders">✉ <span>Reminders</span></button>
+      <button class="nav-link" data-target="reports">▤ <span>Reports</span></button>
+      <button class="nav-link" data-target="audit">◉ <span>Audit trail</span></button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="secure-note">● Secure demo workspace</div>
+      <button class="nav-link" id="logoutBtn">↪ <span>Log out</span></button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">CLINICAL WORKSPACE</div>
+        <h1 id="pageTitle">Dashboard</h1>
+      </div>
+      <div class="top-actions">
+        <span class="today" id="todayLabel"></span>
+        <button class="btn btn-outline" id="viewReferralsBtn">View referrals</button>
+        <button class="btn btn-primary" id="addPatientTop">＋ Add patient</button>
+      </div>
+    </header>
+
+    <section class="section active" id="dashboard">
+      <div class="welcome-row">
+        <div>
+          <h2>Good day, <span id="doctorGreeting">Doctor</span></h2>
+          <p>Here is your patient attention summary.</p>
+        </div>
+        <span class="live-pill"><i></i> Live dashboard</span>
+      </div>
+
+      <div class="stat-grid">
+        <article class="stat-card navy">
+          <span>Total patients</span>
+          <strong id="totalPatients">0</strong>
+          <small>Registered in your care</small>
+        </article>
+        <article class="stat-card teal">
+          <span>Today's appointments</span>
+          <strong id="todayAppointments">0</strong>
+          <small>Scheduled for today</small>
+        </article>
+        <article class="stat-card blue">
+          <span>Patients in queue</span>
+          <strong id="queueCount">0</strong>
+          <small>Awaiting follow-up</small>
+        </article>
+        <article class="stat-card orange">
+          <span>Overdue follow-ups</span>
+          <strong id="overdueCount">0</strong>
+          <small>Need scheduling attention</small>
+        </article>
+        <article class="stat-card red">
+          <span>Clinical warnings</span>
+          <strong id="clinicalCount">0</strong>
+          <small>Require clinician review</small>
+        </article>
+        <article class="stat-card green">
+          <span>Follow-up completion</span>
+          <strong id="completionRate">0%</strong>
+          <small>Completed follow-ups</small>
+        </article>
+        <article class="stat-card purple">
+          <span>Open referrals</span>
+          <strong id="openReferrals">0</strong>
+          <small>Awaiting closure</small>
+        </article>
+      </div>
+
+      <div class="filter-bar">
+        <div>
+          <label for="dashboardCategory">Patient category</label>
+          <select id="dashboardCategory">
+            <option value="">All categories</option>
+            <option>General</option>
+            <option>Pregnancy</option>
+            <option>Chronic</option>
+            <option>Post-illness</option>
+          </select>
+        </div>
+        <div>
+          <label for="dashboardAlert">Alert category</label>
+          <select id="dashboardAlert">
+            <option value="">All alerts</option>
+            <option value="overdue">Overdue follow-up</option>
+            <option value="clinical">Clinical warning</option>
+          </select>
+        </div>
+        <div>
+          <label for="dashboardStatus">Follow-up status</label>
+          <select id="dashboardStatus">
+            <option value="">All statuses</option>
+            <option>Pending</option>
+            <option>Completed</option>
+            <option>Missed</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-two">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Patient Attention Engine</h3>
+              <p>Prioritized cases with clear reasons</p>
+            </div>
+            <button class="text-btn" data-go="attention">View all →</button>
+          </div>
+          <div id="attentionList" class="stack-list empty-state">No active alerts.</div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Today's appointments</h3>
+              <p>Patients expected today</p>
+            </div>
+            <button class="text-btn" data-go="followups">View schedule →</button>
+          </div>
+          <div id="appointmentList" class="stack-list empty-state">No appointments scheduled.</div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Referral tracking</h3>
+              <p>Follow referrals through to closure</p>
+            </div>
+            <button class="text-btn" data-go="referrals">View referrals →</button>
+          </div>
+          <div id="referralList" class="stack-list empty-state">No referrals yet.</div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Patient journey</h3>
+              <p>Recent activity across your patients</p>
+            </div>
+          </div>
+          <div id="timeline" class="timeline empty-state">No activity recorded.</div>
+        </article>
+      </div>
+
+      <div class="grid-two">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Care performance</h3>
+              <p>Based on your current records</p>
+            </div>
+          </div>
+          <div class="metric-row">
+            <span>Follow-ups completed</span>
+            <b id="analyticsCompletion">0%</b>
+          </div>
+          <div class="progress"><i id="completionBar"></i></div>
+          <div class="metric-row">
+            <span>Overdue follow-ups</span>
+            <b id="analyticsOverdue">0</b>
+          </div>
+          <div class="metric-row">
+            <span>Pending clinical reviews</span>
+            <b id="analyticsReviews">0</b>
+          </div>
+          <div class="metric-row">
+            <span>Completed referrals</span>
+            <b id="analyticsReferrals">0</b>
+          </div>
+        </article>
+
+        <article class="panel ai-panel">
+          <div class="panel-head">
+            <div>
+              <span class="ai-tag">AI-ASSISTED</span>
+              <h3>Daily case brief</h3>
+              <p>Administrative summary, not a diagnosis</p>
+            </div>
+          </div>
+          <p id="aiBrief">Your case brief will appear here as records are added.</p>
+          <small>AI-style demo summary. Verify all information before clinical use.</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="patients">
+      <div class="section-heading">
+        <div>
+          <h2>Patient registry</h2>
+          <p>Manage patient profiles and care status.</p>
+        </div>
+        <button class="btn btn-primary" id="addPatientBtn">＋ Add patient</button>
+      </div>
+
+      <div class="toolbar">
+        <input id="patientSearch" type="search" placeholder="Search by patient name or ID">
+        <select id="patientCategoryFilter">
+          <option value="">All categories</option>
+          <option>General</option>
+          <option>Pregnancy</option>
+          <option>Chronic</option>
+          <option>Post-illness</option>
+        </select>
+        <select id="patientStatusFilter">
+          <option value="">All statuses</option>
+          <option>Pending</option>
+          <option>Completed</option>
+          <option>Missed</option>
+          <option>Inactive</option>
+        </select>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Patient</th><th>Age</th><th>Category</th>
+              <th>Next follow-up</th><th>Status</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="patientTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="checkins">
+      <div class="section-heading">
+        <div>
+          <h2>Patient check-ins</h2>
+          <p>Record patient-reported updates and measurements.</p>
+        </div>
+        <button class="btn btn-primary" id="newCheckinBtn">＋ Record check-in</button>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Check-in history</h3>
+            <p>Compare each new entry with the previous check-in.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th><th>Patient</th><th>Reported concern</th>
+                <th>Measurements</th><th>Previous comparison</th><th>Consent</th>
+              </tr>
+            </thead>
+            <tbody id="checkinTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="attention">
+      <div class="section-heading">
+        <div>
+          <h2>Attention engine</h2>
+          <p>Administrative overdue alerts and configured warning signals.</p>
+        </div>
+        <button class="btn btn-outline" id="ruleInfoBtn">About alert rules</button>
+      </div>
+      <div class="notice">
+        Alerts are prompts for qualified staff to review. They do not diagnose conditions or recommend treatment.
+      </div>
+      <div id="fullAttentionList" class="alert-grid"></div>
+    </section>
+
+    <section class="section" id="followups">
+      <div class="section-heading">
+        <div>
+          <h2>Follow-up management</h2>
+          <p>Track scheduled, completed, missed, and rescheduled follow-ups.</p>
+        </div>
+        <button class="btn btn-primary" id="scheduleFollowupBtn">＋ Schedule follow-up</button>
+      </div>
+      <div class="toolbar">
+        <select id="followupFilter">
+          <option value="">All follow-ups</option>
+          <option>Pending</option>
+          <option>Completed</option>
+          <option>Missed</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Patient</th><th>Patient ID</th><th>Due date</th>
+              <th>Status</th><th>Contact attempts</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="followupTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="referrals">
+      <div class="section-heading">
+        <div>
+          <h2>Referral coordination</h2>
+          <p>Assign, monitor, and close referrals.</p>
+        </div>
+        <button class="btn btn-primary" id="newReferralBtn">＋ Create referral</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Patient</th><th>Referred to</th><th>Reason</th>
+              <th>Assigned to</th><th>Status</th><th>Outcome</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="fullReferralList"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="reminders">
+      <div class="section-heading">
+        <div>
+          <h2>Reminders & communication</h2>
+          <p>Preview and log simulated SMS or WhatsApp reminders.</p>
+        </div>
+        <button class="btn btn-primary" id="newReminderBtn">＋ Create reminder</button>
+      </div>
+      <div class="notice">
+        Messages are simulated in this frontend demo. No SMS or WhatsApp message is actually sent.
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Patient</th><th>Channel</th><th>Message preview</th>
+              <th>Scheduled</th><th>Status</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="reminderTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="reports">
+      <div class="section-heading">
+        <div>
+          <h2>Reports & analytics</h2>
+          <p>Operational metrics calculated from dashboard records.</p>
+        </div>
+        <button class="btn btn-primary" id="exportBtn">↓ Export CSV</button>
+      </div>
+
+      <div class="stat-grid compact-stats">
+        <article class="stat-card navy"><span>Patients</span><strong id="reportPatients">0</strong></article>
+        <article class="stat-card orange"><span>Overdue</span><strong id="reportOverdue">0</strong></article>
+        <article class="stat-card teal"><span>Completion</span><strong id="reportCompletion">0%</strong></article>
+        <article class="stat-card purple"><span>Closed referrals</span><strong id="reportClosed">0</strong></article>
+      </div>
+
+      <div class="grid-two">
+        <article class="panel">
+          <h3>Follow-up status breakdown</h3>
+          <div id="statusChart" class="bar-chart"></div>
+        </article>
+        <article class="panel">
+          <h3>Average response times</h3>
+          <div class="metric-row"><span>Alert acknowledgement time</span><b id="avgAck">—</b></div>
+          <div class="metric-row"><span>Referral completion time</span><b id="avgReferral">—</b></div>
+          <div class="metric-row"><span>Missed follow-ups</span><b id="missedReport">0</b></div>
+        </article>
+      </div>
+
+      <article class="panel">
+        <h3>Follow-up trend</h3>
+        <div id="trendChart" class="trend-chart"></div>
+      </article>
+    </section>
+
+    <section class="section" id="audit">
+      <div class="section-heading">
+        <div>
+          <h2>Audit trail</h2>
+          <p>Traceable record of actions in this browser demo.</p>
+        </div>
+        <button class="btn btn-outline" id="clearAuditBtn">Clear demo log</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Time</th><th>Actor</th><th>Action</th><th>Details</th></tr>
+          </thead>
+          <tbody id="auditList"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow">SWASTHYA SENSE</span>
+          <h2 id="modalTitle">Add patient</h2>
+        </div>
+        <button class="icon-btn" id="closeModal" aria-label="Close">×</button>
+      </div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="doctor-dashboard.js"></script>
+</body>
+</html>
