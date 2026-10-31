@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Dashboard | SWASTHYA SENSE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="patient-dashboard.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+
+    <a class="brand" href="#overview">
+      <span class="brand-mark">＋</span>
+      <span>
+        <strong>SWASTHYA<br>SENSE</strong>
+        <small>Turning Health Signals<br>into Timely Care</small>
+      </span>
+    </a>
+
+    <div class="nav-label">PATIENT PORTAL</div>
+
+    <nav class="side-nav">
+      <a class="nav-link active" href="#overview" data-section="overview">
+        <span>▦</span> Dashboard
+      </a>
+      <a class="nav-link" href="#checkin" data-section="checkin">
+        <span>✚</span> Health check-in
+      </a>
+      <a class="nav-link" href="#appointments" data-section="appointments">
+        <span>▣</span> Appointments
+      </a>
+      <a class="nav-link" href="#followups" data-section="followups">
+        <span>◷</span> Follow-ups
+      </a>
+      <a class="nav-link" href="#updates" data-section="updates">
+        <span>◉</span> Health updates
+        <i class="nav-dot"></i>
+      </a>
+      <a class="nav-link" href="#timeline" data-section="timeline">
+        <span>☷</span> Health timeline
+      </a>
+      <a class="nav-link" href="#reminders" data-section="reminders">
+        <span>✉</span> Reminders
+      </a>
+      <a class="nav-link" href="#profile" data-section="profile">
+        <span>♙</span> My profile
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="secure-note">
+        <span class="secure-dot"></span>
+        <span>
+          <b>Secure demo workspace</b>
+          <small>Sample data stored in this browser</small>
+        </span>
+      </div>
+
+      <button class="logout-btn" id="logoutBtn">
+        ↪ &nbsp; Log out
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+      <button class="mobile-menu" id="mobileMenu">☰</button>
+
+      <div class="page-heading">
+        <div class="eyebrow">PATIENT WORKSPACE</div>
+        <h1 id="pageTitle">Dashboard</h1>
+      </div>
+
+      <div class="topbar-actions">
+
+        <span class="today-label" id="todayLabel"></span>
+
+        <button class="icon-button" id="notificationBtn">
+          ♧<i></i>
+        </button>
+
+        <div class="top-user">
+          <div class="avatar" id="topAvatar">P</div>
+          <div>
+            <b id="topUserName">Patient</b>
+            <small>Patient account</small>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- DASHBOARD OVERVIEW -->
+    <section class="view-section active" id="overview">
+
+      <div class="welcome-strip">
+        <div>
+          <span class="tag">WELCOME TO SWASTHYA SENSE</span>
+          <h2 id="welcomeName">Good morning!</h2>
+          <p>Your health journey, appointments and follow-ups — all in one place.</p>
+        </div>
+
+        <div class="welcome-art">
+          <span>♥</span>
+          <small>CARE • TRACK • CONNECT</small>
+        </div>
+      </div>
+
+      <!-- STATISTICS -->
+      <div class="stat-grid">
+
+        <article class="stat-card accent-teal">
+          <div class="stat-top">
+            <span>Upcoming appointments</span>
+            <span class="stat-icon">▣</span>
+          </div>
+          <strong id="statAppointments">0</strong>
+          <small>Scheduled visits</small>
+        </article>
+
+        <article class="stat-card accent-blue">
+          <div class="stat-top">
+            <span>Check-ins submitted</span>
+            <span class="stat-icon">✚</span>
+          </div>
+          <strong id="statCheckins">0</strong>
+          <small>Your health updates</small>
+        </article>
+
+        <article class="stat-card accent-orange">
+          <div class="stat-top">
+            <span>Pending follow-ups</span>
+            <span class="stat-icon">◷</span>
+          </div>
+          <strong id="statFollowups">0</strong>
+          <small>Administrative reminders</small>
+        </article>
+
+        <article class="stat-card accent-green">
+          <div class="stat-top">
+            <span>Completed follow-ups</span>
+            <span class="stat-icon">✓</span>
+          </div>
+          <strong id="statCompleted">0</strong>
+          <small>Recorded in your journey</small>
+        </article>
+
+      </div>
+
+      <!-- DASHBOARD PANELS -->
+      <div class="content-grid overview-grid">
+
+        <article class="panel span-2" id="updates">
+
+          <div class="panel-heading">
+            <div>
+              <h3>Patient Attention Updates</h3>
+              <p>Clear updates about your follow-up journey</p>
+            </div>
+            <span class="mini-label">DEMO DATA</span>
+          </div>
+
+          <div id="attentionList" class="attention-list"></div>
+
+          <p class="fine-print">
+            Administrative follow-up reminders are not medical emergencies.
+            This demo does not diagnose conditions.
+          </p>
+
+        </article>
+
+        <article class="panel" id="appointments">
+
+          <div class="panel-heading">
+            <div>
+              <h3>My Appointments</h3>
+              <p>Your upcoming scheduled visits</p>
+            </div>
+
+            <button class="text-button" data-go="appointments">
+              View all
+            </button>
+          </div>
+
+          <div id="appointmentPreview" class="appointment-list"></div>
+
+          <button class="secondary-btn full-btn" data-go="appointments">
+            Manage appointments
+          </button>
+
+        </article>
+
+        <article class="panel" id="followups">
+
+          <div class="panel-heading">
+            <div>
+              <h3>Follow-up Progress</h3>
+              <p>Keep track of your next steps</p>
+            </div>
+          </div>
+
+          <div class="progress-summary">
+            <strong id="progressPercent">0%</strong>
+            <span>completion in this demo</span>
+          </div>
+
+          <div class="progress-track">
+            <span id="progressBar"></span>
+          </div>
+
+          <div class="progress-foot">
+            <span>Completed follow-ups</span>
+            <b id="progressCount">0</b>
+          </div>
+
+          <p class="muted-note">
+            Contact your healthcare provider if you need to reschedule.
+          </p>
+
+          <button class="secondary-btn full-btn" data-go="followups">
+            View follow-up plan
+          </button>
+
+        </article>
+
+        <article class="panel" id="timeline">
+
+          <div class="panel-heading">
+            <div>
+              <h3>Recent Health Timeline</h3>
+              <p>Your recorded activity</p>
+            </div>
+
+            <button class="text-button" data-go="timeline">
+              View history
+            </button>
+          </div>
+
+          <div id="timelinePreview" class="timeline-list"></div>
+
+        </article>
+
+        <article class="panel" id="reminders">
+
+          <div class="panel-heading">
+            <div>
+              <h3>Reminders & Communication</h3>
+              <p>Messages for your care journey</p>
+            </div>
+
+            <button class="text-button" data-go="reminders">
+              View all
+            </button>
+          </div>
+
+          <div id="reminderPreview" class="reminder-list"></div>
+
+        </article>
+
+      </div>
+
+      <div class="bottom-banner">
+        <div class="banner-icon">✦</div>
+
+        <div>
+          <b>Your care team is here to support you.</b>
+          <p>Keep your information updated and attend scheduled follow-ups.</p>
+        </div>
+
+        <button class="primary-btn" data-go="checkin">
+          Submit a check-in →
+        </button>
+      </div>
+
+    </section>
+
+    <!-- HEALTH CHECK-IN -->
+    <section class="view-section" id="checkin">
+
+      <div class="section-intro">
+        <div>
+          <div class="eyebrow">PATIENT-REPORTED INFORMATION</div>
+          <h2>Health check-in</h2>
+          <p>Share how you are feeling today.</p>
+        </div>
+      </div>
+
+      <div class="content-grid form-layout">
+
+        <article class="panel">
+
+          <div class="panel-heading">
+            <div>
+              <h3>Today's check-in</h3>
+              <p>Complete the fields you are comfortable sharing.</p>
+            </div>
+          </div>
+
+          <form id="checkinForm" class="form-grid">
+
+            <label class="field full">
+              How are you feeling today?
+
+              <select id="feeling" required>
+                <option value="">Choose an option</option>
+                <option>Feeling well</option>
+                <option>Feeling okay</option>
+                <option>Not feeling well</option>
+                <option>Prefer to discuss with my care team</option>
+              </select>
+            </label>
+
+            <label class="field full">
+              Symptoms or health update
+
+              <textarea id="symptoms" rows="4"
+                placeholder="Describe what you have noticed..."></textarea>
+            </label>
+
+            <div class="form-divider full">
+              <b>Optional measurements</b>
+              <span>Enter only values you have measured.</span>
+            </div>
+
+            <label class="field">
+              Blood pressure
+              <input id="bp" type="text" placeholder="120/80"
+                pattern="[0-9]{2,3}/[0-9]{2,3}">
+            </label>
+
+            <label class="field">
+              Pulse (bpm)
+              <input id="pulse" type="number" min="30" max="220">
+            </label>
+
+            <label class="field">
+              Temperature (°C)
+              <input id="temperature" type="number" min="30" max="45" step="0.1">
+            </label>
+
+            <label class="field">
+              Weight (kg)
+              <input id="weight" type="number" min="1" max="400" step="0.1">
+            </label>
+
+            <label class="field full">
+              Additional notes
+              <textarea id="checkinNotes" rows="2"></textarea>
+            </label>
+
+            <div class="form-actions full">
+              <button class="primary-btn" type="submit">
+                Submit check-in →
+              </button>
+              <span id="checkinFeedback" class="feedback"></span>
+            </div>
+
+          </form>
+
+        </article>
+
+        <aside class="panel side-info">
+
+          <h3>What happens next?</h3>
+
+          <ol class="steps">
+            <li>
+              <b>Your check-in is saved</b>
+              <span>Your answers are recorded as patient-reported information.</span>
+            </li>
+            <li>
+              <b>Your care team can review it</b>
+              <span>Authorised staff can review submitted information when connected to the backend.</span>
+            </li>
+            <li>
+              <b>Follow-up is documented</b>
+              <span>Next steps should be confirmed by your healthcare team.</span>
+            </li>
+          </ol>
+
+          <div class="notice-box">
+            <b>Important</b>
+            <p>This prototype is not monitored for urgent symptoms.
+              Contact a healthcare professional or local emergency services when urgent help is needed.</p>
+          </div>
+
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- APPOINTMENTS -->
+    <section class="view-section" id="appointmentsPage">
+
+      <div class="section-intro">
+        <div>
+          <div class="eyebrow">YOUR SCHEDULE</div>
+          <h2>Appointments</h2>
+          <p>View scheduled visits and send a reschedule request.</p>
+        </div>
+
+        <button class="primary-btn" id="requestAppointmentBtn">
+          ＋ Request appointment
+        </button>
+      </div>
+
+      <article class="panel">
+        <div class="panel-heading">
+          <div>
+            <h3>Appointment list</h3>
+            <p>Sample appointments for demonstration</p>
+          </div>
+        </div>
+
+        <div id="appointmentsTable" class="table-wrap"></div>
+      </article>
+
+    </section>
+
+    <!-- FOLLOW UPS -->
+    <section class="view-section" id="followupsPage">
+
+      <div class="section-intro">
+        <div>
+          <div class="eyebrow">STAY ON TRACK</div>
+          <h2>Follow-up plan</h2>
+          <p>See pending and completed follow-up tasks separately.</p>
+        </div>
+      </div>
+
+      <div class="content-grid two-col">
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <h3>Pending follow-ups</h3>
+              <p>Administrative status only</p>
+            </div>
+          </div>
+
+          <div id="pendingFollowups"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <h3>Completed follow-ups</h3>
+              <p>Your recorded progress</p>
+            </div>
+          </div>
+
+          <div id="completedFollowups"></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="view-section" id="timelinePage">
+
+      <div class="section-intro">
+        <div>
+          <div class="eyebrow">YOUR CARE JOURNEY</div>
+          <h2>Health timeline</h2>
+          <p>Chronological view of your activity.</p>
+        </div>
+
+        <button class="secondary-btn" id="exportBtn">
+          ↓ Export my demo data
+        </button>
+      </div>
+
+      <article class="panel">
+        <div id="fullTimeline" class="timeline-list large-timeline"></div>
+      </article>
+
+    </section>
+
+    <!-- REMINDERS -->
+    <section class="view-section" id="remindersPage">
+
+      <div class="section-intro">
+        <div>
+          <div class="eyebrow">STAY CONNECTED</div>
+          <h2>Reminders & communication</h2>
+          <p>Review reminder history and communication preferences.</p>
+        </div>
+
+        <button class="primary-btn" id="simulateReminderBtn">
+          ＋ Create demo reminder
+        </button>
+      </div>
+
+      <div class="content-grid two-col">
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <h3>Reminder history</h3>
+              <p>Messages are simulated in this frontend demo.</p>
+            </div>
+          </div>
+
+          <div id="allReminders" class="reminder-list"></div>
+        </article>
+
+        <article class="panel">
+
+          <div class="panel-heading">
+            <div>
+              <h3>Communication preferences</h3>
+              <p>Saved locally in this browser.</p>
+            </div>
+          </div>
+
+          <form id="preferencesForm" class="form-grid single">
+
+            <label class="field">
+              Preferred channel
+              <select id="channel">
+                <option>Email</option>
+                <option>SMS</option>
+                <option>WhatsApp (simulation only)</option>
+              </select>
+            </label>
+
+            <label class="field">
+              Preferred language
+              <select id="language">
+                <option>English</option>
+                <option>हिन्दी</option>
+                <option>অসমীয়া</option>
+                <option>বাংলা</option>
+              </select>
+            </label>
+
+            <label class="check-field">
+              <input type="checkbox" id="consent">
+              I consent to receive appointment and follow-up reminders.
+            </label>
+
+            <button class="primary-btn" type="submit">
+              Save preferences
+            </button>
+
+            <span id="preferenceFeedback" class="feedback"></span>
+
+          </form>
+
+        </article>
+
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="view-section" id="profile">
+
+      <div class="section-intro">
+        <div>
+          <div class="eyebrow">YOUR ACCOUNT</div>
+          <h2>My profile</h2>
+          <p>Manage your account information.</p>
+        </div>
+      </div>
+
+      <div class="content-grid two-col">
+
+        <article class="panel">
+
+          <div class="panel-heading">
+            <div>
+              <h3>Patient information</h3>
+              <p>Your login details</p>
+            </div>
+          </div>
+
+          <form id="profileForm" class="form-grid single">
+
+            <label class="field">
+              Full name
+              <input id="profileFullName" required maxlength="80">
+            </label>
+
+            <label class="field">
+              Email address
+              <input id="profileEmailInput" type="email" required>
+            </label>
+
+            <label class="field">
+              Patient ID
+              <input id="patientId" readonly>
+            </label>
+
+            <label class="field">
+              Account type
+              <input value="Patient" readonly>
+            </label>
+
+            <button class="primary-btn" type="submit">
+              Save profile
+            </button>
+
+            <span id="profileFeedback" class="feedback"></span>
+
+          </form>
+
+        </article>
+
+        <article class="panel">
+
+          <div class="panel-heading">
+            <div>
+              <h3>Privacy & data</h3>
+              <p>Prototype information</p>
+            </div>
+          </div>
+
+          <div class="notice-box">
+            <b>Demo storage</b>
+            <p>This version stores sample information in browser localStorage.
+              It is not a secure medical record system.</p>
+          </div>
+
+          <button class="secondary-btn full-btn" id="clearDemoBtn">
+            Reset demo data
+          </button>
+
+        </article>
+
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      SWASTHYA SENSE — No Patient Lost in the Follow-up Process.
+      <br>
+      <small>Hackathon prototype • Synthetic data only • Clinical decisions remain with qualified clinicians</small>
+    </footer>
+
+  </main>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status"></div>
+
+<!-- APPOINTMENT MODAL -->
+<div class="modal-backdrop" id="modalBackdrop" hidden>
+
+  <div class="modal">
+
+    <button class="modal-close" id="modalClose">×</button>
+
+    <h3 id="modalTitle">Request an appointment</h3>
+    <p>Submit a demo request. This does not contact a clinic.</p>
+
+    <form id="appointmentRequestForm" class="form-grid single">
+
+      <label class="field">
+        Preferred date
+        <input id="requestDate" type="date" required>
+      </label>
+
+      <label class="field">
+        Reason for visit
+        <input id="requestReason" maxlength="120"
+          placeholder="e.g. Follow-up consultation" required>
+      </label>
+
+      <button class="primary-btn" type="submit">
+        Save demo request
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+<script src="patient-dashboard.js"></script>
+
+</body>
+</html>
