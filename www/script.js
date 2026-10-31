@@ -71,13 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // =====================================
 
     const signupRoleCards = document.querySelectorAll(
-        "[data-role]"
+        "[data-signup-role]"
     );
 
     signupRoleCards.forEach(card => {
 
         function selectRole() {
-            signupRole = card.dataset.role;
+            signupRole = card.dataset.signupRole;
 
             signupRoleCards.forEach(c => {
                 c.classList.remove("selected");
@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (signupRole === "worker") {
 
             extraDetails.workerType =
-                document.getElementById("workerType")?.value || "";
+                document.getElementById("staffType")?.value || "";
 
             extraDetails.hospital =
                 document.getElementById("workerHospital")?.value.trim() || "";
@@ -497,269 +497,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-const translations = {
-    en: {
-        dashboard: "Dashboard",
-        home: "Home",
-        profile: "My Profile",
-        appointments: "Appointments",
-        healthRecords: "Health Records",
-        checkin: "Health Check-in",
-        followup: "Follow-up",
-        reminders: "Reminders",
-        notifications: "Notifications",
-        settings: "Settings",
-        logout: "Logout",
-        welcome: "Welcome",
-        patient: "Patient",
-        doctor: "Doctor",
-        healthStatus: "Health Status",
-        upcomingAppointments: "Upcoming Appointments",
-        completedAppointments: "Completed Appointments",
-        pendingFollowups: "Pending Follow-ups",
-        overdueFollowups: "Overdue Follow-ups",
-        clinicalAlerts: "Clinical Alerts",
-        submit: "Submit",
-        cancel: "Cancel",
-        save: "Save Changes",
-        search: "Search",
-        language: "Select Language",
-        symptoms: "Report Symptoms",
-        measurements: "Health Measurements",
-        history: "Health History",
-        contact: "Contact Healthcare Team",
-        noData: "No records available",
-        patientAttention: "Patient Attention Engine",
-        referral: "Referrals",
-        timeline: "Patient Timeline"
-    },
 
-    hi: {
-        dashboard: "डैशबोर्ड",
-        home: "होम",
-        profile: "मेरी प्रोफ़ाइल",
-        appointments: "अपॉइंटमेंट",
-        healthRecords: "स्वास्थ्य रिकॉर्ड",
-        checkin: "स्वास्थ्य जांच",
-        followup: "फॉलो-अप",
-        reminders: "रिमाइंडर",
-        notifications: "सूचनाएं",
-        settings: "सेटिंग्स",
-        logout: "लॉग आउट",
-        welcome: "स्वागत है",
-        patient: "मरीज",
-        doctor: "डॉक्टर",
-        healthStatus: "स्वास्थ्य स्थिति",
-        upcomingAppointments: "आगामी अपॉइंटमेंट",
-        completedAppointments: "पूर्ण अपॉइंटमेंट",
-        pendingFollowups: "लंबित फॉलो-अप",
-        overdueFollowups: "समय से लंबित फॉलो-अप",
-        clinicalAlerts: "चिकित्सकीय अलर्ट",
-        submit: "जमा करें",
-        cancel: "रद्द करें",
-        save: "बदलाव सहेजें",
-        search: "खोजें",
-        language: "भाषा चुनें",
-        symptoms: "लक्षण बताएं",
-        measurements: "स्वास्थ्य माप",
-        history: "स्वास्थ्य इतिहास",
-        contact: "स्वास्थ्य टीम से संपर्क करें",
-        noData: "कोई रिकॉर्ड उपलब्ध नहीं",
-        patientAttention: "रोगी ध्यान प्रणाली",
-        referral: "रेफरल",
-        timeline: "रोगी की समयरेखा"
-    },
-
-    mr: {
-        dashboard: "डॅशबोर्ड",
-        home: "मुख्यपृष्ठ",
-        profile: "माझे प्रोफाइल",
-        appointments: "अपॉइंटमेंट",
-        healthRecords: "आरोग्य नोंदी",
-        checkin: "आरोग्य तपासणी",
-        followup: "फॉलो-अप",
-        reminders: "स्मरणपत्रे",
-        notifications: "सूचना",
-        settings: "सेटिंग्ज",
-        logout: "लॉग आउट",
-        welcome: "स्वागत आहे",
-        patient: "रुग्ण",
-        doctor: "डॉक्टर",
-        healthStatus: "आरोग्य स्थिती",
-        upcomingAppointments: "आगामी अपॉइंटमेंट",
-        completedAppointments: "पूर्ण झालेल्या अपॉइंटमेंट",
-        pendingFollowups: "प्रलंबित फॉलो-अप",
-        overdueFollowups: "मुदत संपलेले फॉलो-अप",
-        clinicalAlerts: "वैद्यकीय सूचना",
-        submit: "सबमिट करा",
-        cancel: "रद्द करा",
-        save: "बदल जतन करा",
-        search: "शोधा",
-        language: "भाषा निवडा",
-        symptoms: "लक्षणे नोंदवा",
-        measurements: "आरोग्य मोजमाप",
-        history: "आरोग्य इतिहास",
-        contact: "आरोग्य टीमशी संपर्क साधा",
-        noData: "कोणतीही नोंद उपलब्ध नाही",
-        patientAttention: "रुग्ण लक्ष प्रणाली",
-        referral: "रेफरल",
-        timeline: "रुग्णाची कालरेषा"
-    },
-
-    as: {
-        dashboard: "ডেশ্বব'ৰ্ড",
-        home: "ঘৰ",
-        profile: "মোৰ প্ৰ'ফাইল",
-        appointments: "এপইণ্টমেণ্ট",
-        healthRecords: "স্বাস্থ্যৰ তথ্য",
-        checkin: "স্বাস্থ্য পৰীক্ষা",
-        followup: "ফ'ল'-আপ",
-        reminders: "সোঁৱৰাই দিয়া",
-        notifications: "জাননী",
-        settings: "ছেটিংছ",
-        logout: "লগ আউট",
-        welcome: "স্বাগতম",
-        patient: "ৰোগী",
-        doctor: "চিকিৎসক",
-        healthStatus: "স্বাস্থ্যৰ অৱস্থা",
-        upcomingAppointments: "আগন্তুক এপইণ্টমেণ্ট",
-        completedAppointments: "সম্পূৰ্ণ হোৱা এপইণ্টমেণ্ট",
-        pendingFollowups: "বাকী থকা ফ'ল'-আপ",
-        overdueFollowups: "সময় পাৰ হোৱা ফ'ল'-আপ",
-        clinicalAlerts: "চিকিৎসা সম্পৰ্কীয় সতৰ্কবাণী",
-        submit: "দাখিল কৰক",
-        cancel: "বাতিল কৰক",
-        save: "পৰিৱৰ্তন সংৰক্ষণ কৰক",
-        search: "সন্ধান কৰক",
-        language: "ভাষা বাছনি কৰক",
-        symptoms: "লক্ষণসমূহ জনাওক",
-        measurements: "স্বাস্থ্যৰ পৰিমাপ",
-        history: "স্বাস্থ্যৰ ইতিহাস",
-        contact: "স্বাস্থ্য সেৱা দলৰ সৈতে যোগাযোগ কৰক",
-        noData: "কোনো তথ্য উপলব্ধ নাই",
-        patientAttention: "ৰোগীৰ প্ৰতি মনোযোগ ব্যৱস্থা",
-        referral: "ৰেফাৰেল",
-        timeline: "ৰোগীৰ সময়ৰেখা"
-    },
-
-    bn: {
-        dashboard: "ড্যাশবোর্ড",
-        home: "হোম",
-        profile: "আমার প্রোফাইল",
-        appointments: "অ্যাপয়েন্টমেন্ট",
-        healthRecords: "স্বাস্থ্য রেকর্ড",
-        checkin: "স্বাস্থ্য পরীক্ষা",
-        followup: "ফলো-আপ",
-        reminders: "রিমাইন্ডার",
-        notifications: "বিজ্ঞপ্তি",
-        settings: "সেটিংস",
-        logout: "লগ আউট",
-        welcome: "স্বাগতম",
-        patient: "রোগী",
-        doctor: "ডাক্তার",
-        healthStatus: "স্বাস্থ্যের অবস্থা",
-        upcomingAppointments: "আসন্ন অ্যাপয়েন্টমেন্ট",
-        completedAppointments: "সম্পন্ন অ্যাপয়েন্টমেন্ট",
-        pendingFollowups: "বাকি ফলো-আপ",
-        overdueFollowups: "সময় পেরিয়ে যাওয়া ফলো-আপ",
-        clinicalAlerts: "চিকিৎসা সংক্রান্ত সতর্কতা",
-        submit: "জমা দিন",
-        cancel: "বাতিল করুন",
-        save: "পরিবর্তন সংরক্ষণ করুন",
-        search: "অনুসন্ধান করুন",
-        language: "ভাষা নির্বাচন করুন",
-        symptoms: "উপসর্গ জানান",
-        measurements: "স্বাস্থ্য পরিমাপ",
-        history: "স্বাস্থ্য ইতিহাস",
-        contact: "স্বাস্থ্যসেবা দলের সঙ্গে যোগাযোগ করুন",
-        noData: "কোনো তথ্য উপলব্ধ নেই",
-        patientAttention: "রোগীর প্রতি নজরদারি ব্যবস্থা",
-        referral: "রেফারেল",
-        timeline: "রোগীর সময়রেখা"
-    }
-};
 
 
 // Get saved language or default English
-let currentLanguage =
-    localStorage.getItem("swasthyaLanguage") || "en";
 
-
-// Translation function
-function t(key) {
-    return translations[currentLanguage]?.[key]
-        || translations.en[key]
-        || key;
-}
-
-
-// Apply translations to page
-function applyLanguage() {
-
-    document.documentElement.lang = currentLanguage;
-
-    // Translate normal text
-    document.querySelectorAll("[data-i18n]").forEach(element => {
-        const key = element.dataset.i18n;
-
-        if (translations[currentLanguage][key]) {
-            element.textContent = t(key);
-        }
-    });
-
-    // Translate placeholders
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
-        const key = element.dataset.i18nPlaceholder;
-        element.placeholder = t(key);
-    });
-
-    // Translate titles
-    document.querySelectorAll("[data-i18n-title]").forEach(element => {
-        const key = element.dataset.i18nTitle;
-        element.title = t(key);
-    });
-
-    // Update dropdown
-    const selector = document.getElementById("languageSelect");
-
-    if (selector) {
-        selector.value = currentLanguage;
-    }
-}
-
-
-// Change language
-function changeLanguage(language) {
-
-    if (!translations[language]) return;
-
-    currentLanguage = language;
-
-    localStorage.setItem("swasthyaLanguage", language);
-
-    applyLanguage();
-
-    // Notify other app components
-    document.dispatchEvent(
-        new CustomEvent("languageChanged", {
-            detail: { language }
-        })
-    );
-}
-
-
-// Initialise language system
-document.addEventListener("DOMContentLoaded", () => {
-
-    const selector = document.getElementById("languageSelect");
-
-    if (selector) {
-        selector.value = currentLanguage;
-
-        selector.addEventListener("change", function () {
-            changeLanguage(this.value);
-        });
-    }
-
-    applyLanguage();
-});

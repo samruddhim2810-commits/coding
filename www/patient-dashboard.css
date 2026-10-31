@@ -658,7 +658,7 @@ textarea { resize: vertical; }
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: #16a085;
+    background: #20334a;
     color: white;
     display: flex;
     align-items: center;
@@ -689,7 +689,7 @@ textarea { resize: vertical; }
 }
 
 .ai-chat-header {
-    background: #16a085;
+    background: #20334a;
     color: white;
     padding: 15px;
     display: flex;
@@ -729,7 +729,7 @@ textarea { resize: vertical; }
 }
 
 .ai-user {
-    background: #16a085;
+    background:#20334a;
     color: white;
     margin-left: auto;
 }
@@ -756,7 +756,7 @@ textarea { resize: vertical; }
 }
 
 .ai-chat-controls button {
-    background: hsl(201, 80%, 40%);
+    background:#20334a;
     color: white;
     border: none;
     border-radius: 8px;

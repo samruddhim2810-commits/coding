@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +12,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<div class="language-selector">
+
+<body>
+ <div class="language-selector">
     <i class="fa-solid fa-globe"></i>
 
     <select id="languageSelect">
@@ -24,8 +25,6 @@
         <option value="bn">বাংলা</option>
     </select>
 </div>
-<body>
-
 <div class="main-container">
 
     <section class="left-section">
@@ -37,16 +36,16 @@
 
             <div>
                 <h1>SWASTHYA<br>SENSE</h1>
-                <p class="tagline">Smart Healthcare. Better Tomorrow.</p>
+                <p class="tagline" data-i18n="tagline">Smart Healthcare. Better Tomorrow.</p>
             </div>
         </div>
 
         <div class="hero-content">
-            <span class="welcome-label">WELCOME TO SWASTHYA SENSE</span>
+            <span class="welcome-label" data-i18n="welcomeLabel">WELCOME TO SWASTHYA SENSE</span>
 
-            <h2>Your Health,<br>Our Priority.</h2>
+            <h2 data-i18n="heroTitle">Your Health,<br>Our Priority.</h2>
 
-            <p>
+            <p data-i18n="heroDescription">
                 A smarter healthcare experience connecting
                 patients, doctors and healthcare professionals.
                 Stay informed, connected and cared for.
@@ -55,29 +54,29 @@
             <div class="benefits">
                 <div class="benefit">
                     <i class="fa-solid fa-calendar-check"></i>
-                    <span>Easy Follow-ups</span>
+                    <span data-i18n="easyFollowups">Easy Follow-ups</span>
                 </div>
 
                 <div class="benefit">
                     <i class="fa-solid fa-shield-heart"></i>
-                    <span>Secure Health Access</span>
+                    <span data-i18n="secureHealthAccess">Secure Health Access</span>
                 </div>
 
                 <div class="benefit">
                     <i class="fa-solid fa-user-doctor"></i>
-                    <span>Professional Care</span>
+                    <span data-i18n="professionalCare">Professional Care</span>
                 </div>
 
                 <div class="benefit">
                     <i class="fa-solid fa-heart-pulse"></i>
-                    <span>Smart Health Monitoring</span>
+                    <span data-i18n="smartHealthMonitoring">Smart Health Monitoring</span>
                 </div>
             </div>
         </div>
 
         <div class="hero-bottom">
             <i class="fa-solid fa-heart-pulse"></i>
-            <span>No Patient Lost in the Follow-up Process.</span>
+            <span data-i18n="followupPromise">No Patient Lost in the Follow-up Process.</span>
         </div>
 
     </section>
@@ -89,11 +88,11 @@
 
             <div class="tabs">
                 <button class="tab active" id="loginTab">
-                    Sign In
+                    <span data-i18n="signIn">Sign In</span>
                 </button>
 
                 <button class="tab" id="signupTab">
-                    Sign Up
+                    <span data-i18n="signUp">Sign Up</span>
                 </button>
             </div>
 
@@ -103,61 +102,62 @@
             <form id="loginForm">
 
                 <div class="form-heading">
-                    <h2>Welcome Back!</h2>
-                    <p>Sign in to continue to your account.</p>
+                    <h2 data-i18n="welcomeBack">Welcome Back!</h2>
+                    <p data-i18n="continueAccount">Sign in to continue to your account.</p>
                 </div>
 
-                <label>Select Your Role</label>
+                <label data-i18n="selectRole">Select Your Role</label>
 
                 <div class="role-selection">
 
                     <div class="role-card selected" data-login-role="patient">
                         <i class="fa-solid fa-user"></i>
-                        <h3>Patient</h3>
+                        <h3 data-i18n="patient">Patient</h3>
                     </div>
 
                     <div class="role-card" data-login-role="doctor">
                         <i class="fa-solid fa-user-doctor"></i>
-                        <h3>Doctor</h3>
+                        <h3 data-i18n="doctor">Doctor</h3>
                     </div>
 
                     <div class="role-card" data-login-role="worker">
                         <i class="fa-solid fa-hospital-user"></i>
-                        <h3>Healthcare Worker</h3>
+                        <h3 data-i18n="healthWorker">Healthcare Worker</h3>
                     </div>
 
                 </div>
 
                 <input type="hidden" id="loginRole" value="patient">
 
-                <label>Email Address</label>
+                <label data-i18n="email">Email Address</label>
 
                 <div class="input-group">
                     <i class="fa-regular fa-envelope"></i>
-                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" data-i18n-placeholder="enterEmail" required>
                 </div>
 
-                <label>Password</label>
+                <label data-i18n="password">Password</label>
 
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="loginPassword" placeholder="Enter password" required>
+                    <input type="password" id="loginPassword" placeholder="Enter password" data-i18n-placeholder="enterPassword" required>
                     <i class="fa-regular fa-eye toggle-password" data-target="loginPassword"></i>
                 </div>
 
                 <div class="forgot">
-                    <a href="#" id="forgotPassword">Forgot Password?</a>
+                    <a href="#" id="forgotPassword" data-i18n="forgotPassword">Forgot Password?</a>
                 </div>
 
                 <div id="loginMessage" class="message"></div>
 
                 <button class="submit-btn" type="submit">
-                    Sign In <i class="fa-solid fa-arrow-right"></i>
+                    <span data-i18n="signIn">Sign In</span>
+                    <i class="fa-solid fa-arrow-right"></i>
                 </button>
 
                 <p class="switch-text">
-                    Don't have an account?
-                    <a href="#" id="goSignup">Create Account</a>
+                    <span data-i18n="noAccount">Don't have an account?</span>
+                    <a href="#" id="goSignup" data-i18n="createAccount">Create Account</a>
                 </p>
 
             </form>
@@ -168,75 +168,75 @@
             <form id="signupForm" class="hidden">
 
                 <div class="form-heading">
-                    <h2>Create Account</h2>
-                    <p>Register with Swasthya Sense.</p>
+                    <h2 data-i18n="createAccount">Create Account</h2>
+                    <p data-i18n="registerWith">Register with Swasthya Sense.</p>
                 </div>
 
-                <label>Select Your Role</label>
+                <label data-i18n="selectRole">Select Your Role</label>
 
                 <div class="role-selection">
 
                     <div class="role-card selected" data-signup-role="patient">
                         <i class="fa-solid fa-user"></i>
-                        <h3>Patient</h3>
+                        <h3 data-i18n="patient">Patient</h3>
                     </div>
 
                     <div class="role-card" data-signup-role="doctor">
                         <i class="fa-solid fa-user-doctor"></i>
-                        <h3>Doctor</h3>
+                        <h3 data-i18n="doctor">Doctor</h3>
                     </div>
 
                     <div class="role-card" data-signup-role="worker">
                         <i class="fa-solid fa-hospital-user"></i>
-                        <h3>Healthcare Worker</h3>
+                        <h3 data-i18n="healthWorker">Healthcare Worker</h3>
                     </div>
 
                 </div>
 
                 <input type="hidden" id="signupRole" value="patient">
 
-                <label>Full Name</label>
+                <label data-i18n="fullName">Full Name</label>
 
                 <div class="input-group">
                     <i class="fa-regular fa-user"></i>
-                    <input type="text" id="fullName" placeholder="Enter full name" maxlength="100" required>
+                    <input type="text" id="fullName" placeholder="Enter full name" data-i18n-placeholder="enterFullName" maxlength="100" required>
                 </div>
 
-                <label>Email Address</label>
+                <label data-i18n="email">Email Address</label>
 
                 <div class="input-group">
                     <i class="fa-regular fa-envelope"></i>
-                    <input type="email" id="signupEmail" placeholder="Enter email" required>
+                    <input type="email" id="signupEmail" placeholder="Enter email" data-i18n-placeholder="enterEmail" required>
                 </div>
 
-                <label>Mobile Number</label>
+                <label data-i18n="mobile">Mobile Number</label>
 
                 <div class="input-group">
                     <i class="fa-solid fa-phone"></i>
-                    <input type="tel" id="phone" placeholder="10 digit mobile number" pattern="[6-9][0-9]{9}" maxlength="10" required>
+                    <input type="tel" id="phone" placeholder="10 digit mobile number" data-i18n-placeholder="mobilePlaceholder" pattern="[6-9][0-9]{9}" maxlength="10" required>
                 </div>
 
                 <!-- PATIENT FIELDS -->
 
                 <div id="patientFields">
 
-                    <label>Date of Birth</label>
+                    <label data-i18n="dateOfBirth">Date of Birth</label>
 
                     <div class="input-group">
                         <i class="fa-regular fa-calendar"></i>
                         <input type="date" id="dob">
                     </div>
 
-                    <label>Gender</label>
+                    <label data-i18n="gender">Gender</label>
 
                     <div class="input-group">
                         <i class="fa-solid fa-venus-mars"></i>
                         <select id="gender">
-                            <option value="">Select Gender</option>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Other</option>
-                            <option>Prefer not to say</option>
+                            <option value="" data-i18n="selectGender">Select Gender</option>
+                            <option value="Male" data-i18n="male">Male</option>
+                            <option value="Female" data-i18n="female">Female</option>
+                            <option value="Other" data-i18n="other">Other</option>
+                            <option value="Prefer not to say" data-i18n="preferNotToSay">Prefer not to say</option>
                         </select>
                     </div>
 
@@ -247,29 +247,29 @@
 
                 <div id="doctorFields" class="hidden">
 
-                    <label>Professional Role</label>
+                    <label data-i18n="professionalRole">Professional Role</label>
 
                     <div class="input-group">
                         <i class="fa-solid fa-user-doctor"></i>
                         <select id="professionalType">
-                            <option value="">Select Role</option>
-                            <option>Doctor</option>
-                            <option>Specialist</option>
+                            <option value="" data-i18n="selectRoleOption">Select Role</option>
+                            <option value="Doctor" data-i18n="doctor">Doctor</option>
+                            <option value="Specialist" data-i18n="specialist">Specialist</option>
                         </select>
                     </div>
 
-                    <label>Medical Licence / Registration Number</label>
+                    <label data-i18n="license">Medical Licence / Registration Number</label>
 
                     <div class="input-group">
                         <i class="fa-solid fa-id-card"></i>
-                        <input type="text" id="license" placeholder="Enter registration number">
+                        <input type="text" id="license" placeholder="Enter registration number" data-i18n-placeholder="registrationPlaceholder">
                     </div>
 
-                    <label>Hospital / Clinic Name</label>
+                    <label data-i18n="hospital">Hospital / Clinic Name</label>
 
                     <div class="input-group">
                         <i class="fa-solid fa-hospital"></i>
-                        <input type="text" id="hospital" placeholder="Hospital name">
+                        <input type="text" id="hospital" placeholder="Hospital name" data-i18n-placeholder="hospitalPlaceholder">
                     </div>
 
                 </div>
@@ -279,66 +279,67 @@
 
                 <div id="workerFields" class="hidden">
 
-                    <label>Staff Designation</label>
+                    <label data-i18n="staffDesignation">Staff Designation</label>
 
                     <div class="input-group">
                         <i class="fa-solid fa-briefcase"></i>
                         <select id="staffType">
-                            <option value="">Select Designation</option>
-                            <option>Nurse</option>
-                            <option>Healthcare Assistant</option>
-                            <option>Hospital Staff</option>
-                            <option>Administrator</option>
+                            <option value="" data-i18n="selectDesignation">Select Designation</option>
+                            <option value="Nurse" data-i18n="nurse">Nurse</option>
+                            <option value="Healthcare Assistant" data-i18n="healthcareAssistant">Healthcare Assistant</option>
+                            <option value="Hospital Staff" data-i18n="hospitalStaff">Hospital Staff</option>
+                            <option value="Administrator" data-i18n="administrator">Administrator</option>
                         </select>
                     </div>
 
-                    <label>Hospital / Organisation</label>
+                    <label data-i18n="organisation">Hospital / Organisation</label>
 
                     <div class="input-group">
                         <i class="fa-solid fa-hospital"></i>
-                        <input type="text" id="workerHospital" placeholder="Hospital name">
+                        <input type="text" id="workerHospital" placeholder="Hospital name" data-i18n-placeholder="hospitalPlaceholder">
                     </div>
 
-                    <label>Staff ID</label>
+                    <label data-i18n="staffId">Staff ID</label>
 
                     <div class="input-group">
                         <i class="fa-solid fa-id-badge"></i>
-                        <input type="text" id="staffId" placeholder="Enter staff ID">
+                        <input type="text" id="staffId" placeholder="Enter staff ID" data-i18n-placeholder="enterStaffId">
                     </div>
 
                 </div>
 
 
-                <label>Password</label>
+                <label data-i18n="password">Password</label>
 
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="signupPassword" minlength="8" placeholder="Minimum 8 characters" required>
+                    <input type="password" id="signupPassword" minlength="8" placeholder="Minimum 8 characters" data-i18n-placeholder="minimumPassword" required>
                     <i class="fa-regular fa-eye toggle-password" data-target="signupPassword"></i>
                 </div>
 
-                <label>Confirm Password</label>
+                <label data-i18n="confirmPassword">Confirm Password</label>
 
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                    <input type="password" id="confirmPassword" placeholder="Confirm password" data-i18n-placeholder="confirmPasswordPlaceholder" required>
                     <i class="fa-regular fa-eye toggle-password" data-target="confirmPassword"></i>
                 </div>
 
                 <label class="terms">
                     <input type="checkbox" id="terms" required>
-                    I agree to the Terms and Privacy Policy.
+                    <span data-i18n="terms">I agree to the Terms and Privacy Policy.</span>
                 </label>
 
                 <div id="signupMessage" class="message"></div>
 
                 <button class="submit-btn" type="submit">
-                    Create Account <i class="fa-solid fa-arrow-right"></i>
+                    <span data-i18n="createAccount">Create Account</span>
+                    <i class="fa-solid fa-arrow-right"></i>
                 </button>
 
                 <p class="switch-text">
-                    Already registered?
-                    <a href="#" id="goLogin">Sign In</a>
+                    <span data-i18n="alreadyRegistered">Already registered?</span>
+                    <a href="#" id="goLogin" data-i18n="signIn">Sign In</a>
                 </p>
 
             </form>
@@ -350,6 +351,7 @@
 </div>
 
 <script src="script.js"></script>
+<script src="language.js"></script>
 
 </body>
 </html>
