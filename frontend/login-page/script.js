@@ -369,3 +369,10 @@ document.getElementById("forgotPassword").addEventListener(
 updateSignupRole("patient");
 
 console.log("Swasthya Sense authentication UI loaded successfully!");
+
+localStorage.setItem("swasthyaUserName", fullName);
+localStorage.setItem("swasthyaUserEmail", email);
+localStorage.setItem("swasthyaUserPhone", phone);
+localStorage.setItem("swasthyaUserRole", "patient");
+
+window.location.href = "patient-dashboard.html";
