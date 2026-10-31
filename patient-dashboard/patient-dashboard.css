@@ -649,3 +649,125 @@ textarea { resize: vertical; }
   .metric-card strong { font-size: 21px; }
   .form-grid { grid-template-columns: 1fr; }
 }
+/* SWASTHYA SENSE AI ASSISTANT */
+
+#ai-chat-button {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #16a085;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    z-index: 9999;
+}
+
+#ai-chat-window {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    width: 350px;
+    height: 470px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.ai-chat-hidden {
+    display: none !important;
+}
+
+.ai-chat-header {
+    background: #16a085;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.ai-chat-header button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#ai-chat-messages {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    background: #f5f7f8;
+}
+
+.ai-message {
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    max-width: 85%;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.ai-bot {
+    background: #e2f3ef;
+    color: #222;
+}
+
+.ai-user {
+    background: #16a085;
+    color: white;
+    margin-left: auto;
+}
+
+.ai-chat-controls {
+    padding: 10px;
+    display: flex;
+    gap: 6px;
+    border-top: 1px solid #ddd;
+}
+
+.ai-chat-controls input {
+    flex: 1;
+    min-width: 0;
+    padding: 9px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.ai-chat-controls select {
+    width: 85px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.ai-chat-controls button {
+    background: hsl(201, 80%, 40%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 9px;
+    cursor: pointer;
+}
+
+@media (max-width: 450px) {
+    #ai-chat-window {
+        width: calc(100% - 30px);
+        right: 15px;
+        bottom: 90px;
+    }
+}

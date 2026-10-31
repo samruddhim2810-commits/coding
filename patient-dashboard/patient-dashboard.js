@@ -1041,3 +1041,151 @@ $("logoutBtn")?.addEventListener("click", () => {
 
 saveData();
 renderAll();
+// ==========================================
+// SWASTHYA SENSE - AI HEALTH ASSISTANT
+// ==========================================
+
+const AI_API_URL = "http://127.0.0.1:8000/ai/chat";
+
+// Open and close AI chat
+function toggleAIChat() {
+    const chatWindow = document.getElementById("ai-chat-window");
+
+    if (chatWindow) {
+        chatWindow.classList.toggle("ai-chat-hidden");
+    }
+}
+
+// Add message to chat
+function addAIMessage(message, sender) {
+    const messages = document.getElementById("ai-chat-messages");
+
+    if (!messages) {
+        console.error("AI chat messages container not found");
+        return null;
+    }
+
+    const messageDiv = document.createElement("div");
+
+    messageDiv.className = `ai-message ${sender}`;
+    messageDiv.textContent = message;
+
+    messages.appendChild(messageDiv);
+    messages.scrollTop = messages.scrollHeight;
+
+    return messageDiv;
+}
+
+// Send message to Gemini through FastAPI
+async function sendAIMessage() {
+
+    const input = document.getElementById("ai-user-input");
+    const languageSelect = document.getElementById("ai-language");
+    const sendButton = document.querySelector(
+        "#ai-chat-window .ai-chat-controls button"
+    );
+
+    if (!input || !languageSelect || !sendButton) {
+        console.error("AI chat elements are missing");
+        return;
+    }
+
+    const message = input.value.trim();
+    const language = languageSelect.value;
+
+    if (!message) {
+        return;
+    }
+
+    // Display user's message
+    addAIMessage(message, "ai-user");
+
+    // Clear input
+    input.value = "";
+
+    // Disable button during request
+    sendButton.disabled = true;
+    sendButton.textContent = "Wait...";
+
+    // Create a separate loading message
+    const loadingElement = addAIMessage(
+        "Thinking...",
+        "ai-bot"
+    );
+
+    try {
+
+        console.log("Sending AI request...");
+
+        const response = await fetch(AI_API_URL, {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                message: message,
+                language: language
+            })
+        });
+
+        // Read response
+        const data = await response.json();
+
+        console.log("AI RESPONSE STATUS:", response.status);
+        console.log("AI RESPONSE DATA:", data);
+
+        // Update the exact loading message
+        if (response.ok && data.reply) {
+
+            loadingElement.textContent = data.reply;
+
+        } else {
+
+            loadingElement.textContent =
+                data.detail ||
+                `AI service error: ${response.status}`;
+
+        }
+
+    } catch (error) {
+
+        console.error("AI CHAT ERROR:", error);
+
+        loadingElement.textContent =
+            "Unable to connect to the AI assistant. Please try again.";
+
+    } finally {
+
+        // Enable button again
+        sendButton.disabled = false;
+        sendButton.textContent = "Send";
+
+        const messages = document.getElementById(
+            "ai-chat-messages"
+        );
+
+        if (messages) {
+            messages.scrollTop = messages.scrollHeight;
+        }
+    }
+}
+
+// Send message when Enter is pressed
+document.addEventListener("DOMContentLoaded", function () {
+
+    const input = document.getElementById("ai-user-input");
+
+    if (input) {
+        input.addEventListener("keydown", function (event) {
+
+            if (event.key === "Enter") {
+                event.preventDefault();
+                sendAIMessage();
+            }
+
+        });
+    }
+
+});

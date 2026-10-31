@@ -385,5 +385,41 @@
 
 <div class="toast" id="toast" role="status"></div>
 <script src="patient-dashboard.js"></script>
+<!-- SWASTHYA SENSE AI ASSISTANT -->
+<div id="ai-chat-button" onclick="toggleAIChat()">
+    💬
+</div>
+
+<div id="ai-chat-window" class="ai-chat-hidden">
+
+    <div class="ai-chat-header">
+        <span>SWASTHYA SENSE AI</span>
+        <button onclick="toggleAIChat()">✕</button>
+    </div>
+
+    <div id="ai-chat-messages">
+        <div class="ai-message ai-bot">
+            Hello! I'm your AI Health Assistant.
+            How can I help you today?
+        </div>
+    </div>
+
+    <div class="ai-chat-controls">
+        <select id="ai-language">
+            <option value="English">English</option>
+            <option value="Hindi">हिन्दी</option>
+            <option value="Marathi">मराठी</option>
+        </select>
+
+        <input
+            type="text"
+            id="ai-user-input"
+            placeholder="Ask your health question..."
+        >
+
+        <button onclick="sendAIMessage()">Send</button>
+    </div>
+
+</div>
 </body>
 </html>
